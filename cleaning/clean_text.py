@@ -2,18 +2,19 @@ import re
 import unicodedata
 
 def clean_text(text):
-    # Unicode normalization
+    # Normalisation Unicode
     text = unicodedata.normalize("NFKC", text)
 
-    # Supprimer les caractères spéciaux inutiles
-    text = re.sub(r"[^\w\s.,:%€$-]", " ", text)
+    # Autoriser les caractères importants comme @ et / pour les emails/URLs
+    text = re.sub(r"[^\w\s.,:%€$@/-]", " ", text)
 
     # Convertir en minuscules
     text = text.lower()
 
-    # Supprimer les espaces multiples et lignes vides
+    # Supprimer les espaces multiples
     text = re.sub(r"\s+", " ", text)
+
+    # Supprimer les lignes vides
     text = re.sub(r"\n\s*\n", "\n", text)
 
-    # Trim final
     return text.strip()

@@ -16,7 +16,13 @@ pandas
 faiss-cpu
 torch
 jsonlines
-tqdm
 streamlit
 spacy
 python-dotenv
+langchain
+torch 
+phonenumbers
+numpy
+einops
+fitz
+textsplitter

@@ -1,0 +1,8 @@
+.venv\Scripts\activate 
+
+python extract_texts.py 
+python clean_all.py   
+python generate_chunks.py 
+python generate_embeddings.py
+python extract_entities.py  
+python generate_questions.py 

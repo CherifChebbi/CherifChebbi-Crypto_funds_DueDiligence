@@ -1,3 +1,5 @@
+# extract_texts.py
+
 import os
 import fitz  # PyMuPDF
 from pathlib import Path
@@ -53,3 +55,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
