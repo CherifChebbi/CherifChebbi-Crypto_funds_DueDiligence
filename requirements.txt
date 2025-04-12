@@ -26,3 +26,12 @@ numpy
 einops
 fitz
 textsplitter
+python-docx
+pdfplumber
+pytesseract
+pdf2image
+Pillow
+beautifulsoup4
+filetype
+nltk
+unidecode
