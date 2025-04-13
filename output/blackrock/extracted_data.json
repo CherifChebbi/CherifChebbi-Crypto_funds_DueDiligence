@@ -1,0 +1,66 @@
+{
+    "fund_names": [
+        "Troubled Asset Relief Program Capital"
+    ],
+    "financial_keywords": {
+        "investment": 49,
+        "fund": 4,
+        "return": 0,
+        "risk": 22,
+        "portfolio": 11,
+        "strategy": 1,
+        "performance": 3,
+        "assets": 11,
+        "liquidity": 2,
+        "capital": 7
+    },
+    "sections_found": {
+        "executive summary": true,
+        "fund overview": false,
+        "investment strategy": true,
+        "risk factors": false,
+        "performance history": false,
+        "contact details": false
+    },
+    "risk_factors_found": {
+        "volatility": false,
+        "market risk": false,
+        "liquidity risk": false,
+        "regulatory risk": false,
+        "operational risk": false,
+        "counterparty risk": false
+    },
+    "money_values": [
+        "$5.97",
+        "03%",
+        "7%",
+        "$1.7",
+        "5%",
+        "9%",
+        "9%",
+        "9%",
+        "100%"
+    ],
+    "dates": [
+        "1940",
+        "1988",
+        "1999",
+        "2000",
+        "2006",
+        "2008",
+        "2010",
+        "2011",
+        "2019",
+        "2020",
+        "31 December 2018"
+    ],
+    "emails": [],
+    "urls": [],
+    "phone_numbers": [],
+    "addresses": [],
+    "named_entities": [],
+    "sentiment": {
+        "label": "positive",
+        "score": 0.9975506663322449
+    }
+}
