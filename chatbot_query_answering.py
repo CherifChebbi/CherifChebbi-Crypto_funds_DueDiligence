@@ -26,6 +26,32 @@ Context:
 Question: {question}
 """
 
+def extract_missing_points(question: str, answer: str, context_chunks: list) -> list:
+    context_text = "\n\n".join([chunk["chunk"]["text"] for chunk in context_chunks if "chunk" in chunk])
+
+    prompt = f"""
+You are an expert assistant. Given the context, question, and answer, identify which key points or facts are missing from the context that would allow a perfect and complete answer to the question.
+
+Return the result strictly as a JSON array of strings (each string being a missing point).
+
+Context:
+{context_text}
+
+Question:
+{question}
+
+Answer:
+{answer}
+
+MissingPoints:
+"""
+
+    response = call_sambanova(prompt)
+    try:
+        return json.loads(response)
+    except Exception:
+        return []
+
 def get_latest_index_path():
     faiss_files = list(FAISS_DIR.rglob("*.faiss"))
     if not faiss_files:
@@ -46,7 +72,7 @@ def answer_query_from_documents_debug(
     progress = st.empty()
     progress.text("🔍 Step 1/4: Retrieving relevant content...")
 
-    # === 1. GraphRAG (strict, pas de fallback)
+    # === 1. GraphRAG (strict)
     if use_graph:
         local_chunks = graphrag_retrieve(query=question, top_k=k)
         if not local_chunks:
@@ -58,7 +84,8 @@ def answer_query_from_documents_debug(
                     "hallucination_risk": "high",
                     "justification": "No chunks were returned by GraphRAG.",
                     "verdict": "❌ Unsupported"
-                }
+                },
+                "missing_points": []
             }
         for c in local_chunks:
             c["origin"] = "graph"
@@ -67,16 +94,14 @@ def answer_query_from_documents_debug(
         for c in local_chunks:
             c["origin"] = "local"
 
-    # === 2. Web augmentation (facultative)
+    # === 2. Web augmentation
     if use_web:
         progress.text("🌐 Step 1.5: Retrieving from the web...")
         raw_web_chunks = get_web_chunks(question)
         reviewed_web_chunks = review_web_chunks(question, raw_web_chunks)
-
         web_chunks = [c for c in reviewed_web_chunks if c.get("relevance_score", 0) >= 0.3]
         for c in web_chunks:
             c["origin"] = "web"
-
         combined_chunks = local_chunks + web_chunks
     else:
         combined_chunks = local_chunks
@@ -94,12 +119,14 @@ def answer_query_from_documents_debug(
         answer=final_answer,
         context_chunks=combined_chunks
     )
+    review["context_chunks"] = combined_chunks
 
-    review["context_chunks"] = combined_chunks  # ✅ Pour affichage dans Streamlit
+    # === 5. Détection des informations manquantes
+    progress.text("🔍 Step 4/4: Detecting missing points...")
+    missing_points = extract_missing_points(question, final_answer, combined_chunks)
 
-    # === 5. Résumé final
-    progress.text("✅ Step 4/4: Displaying results")
-
+    # === Résumé final
+    progress.text("✅ Displaying results")
     sources = []
     for res in combined_chunks:
         if res.get("origin") in ["graph", "local"] and "metadata" in res.get("chunk", {}):
@@ -110,5 +137,6 @@ def answer_query_from_documents_debug(
     return {
         "answer": final_answer,
         "sources": list(set(sources)),
-        "review": review
+        "review": review,
+        "missing_points": missing_points
     }

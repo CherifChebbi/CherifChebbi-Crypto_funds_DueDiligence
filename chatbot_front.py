@@ -9,7 +9,8 @@ from chatbot_generate_chunks import process_file
 from chatbot_generate_embeddings import process_chunked_data
 from chatbot_faiss_index import process_embeddings_file
 from chatbot_query_answering import answer_query_from_documents_debug
-from streamlit_echarts import st_echarts  # ✅ jauge circulaire
+from chatbot_question_suggester import render_question_suggester
+from streamlit_echarts import st_echarts
 
 os.environ["STREAMLIT_WATCH_USE_POLLING"] = "true"
 
@@ -78,7 +79,7 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 
 # === HEADER ===
 st.title("🪙 Crypto Fund Due Diligence Assistant")
-st.markdown("Ask questions about any uploaded documents related to crypto investment funds.")
+st.markdown("Upload your documents and ask deep-dive questions about any crypto investment fund.")
 
 # === FILE UPLOAD ===
 uploaded_files = st.file_uploader("📁 Upload your files (PDF, DOCX, etc.)", accept_multiple_files=True)
@@ -123,13 +124,19 @@ if uploaded_files:
         else:
             st.warning(f"Not enough extractable text in: {file.name}")
 
-# === Q&A SECTION ===
+# === QUESTION SUGGESTER
+st.markdown("---\n### 🧠 Suggested Due Diligence Questions")
+render_question_suggester()
+
+# === Q&A ===
 st.markdown("---\n### 💬 Ask a question about your documents")
 
 use_web = st.toggle("📡 Use Web Sources", value=True)
 use_graph = st.toggle("🧠 Use GraphRAG instead of FAISS", value=False)
 
-question = st.text_input("Your question:")
+injected = st.session_state.get("injected_question", "")
+question = st.text_input("Your question:", value=injected)
+
 if st.button("Send") and question:
     with st.spinner("Searching and reviewing..."):
         result = answer_query_from_documents_debug(
@@ -140,15 +147,13 @@ if st.button("Send") and question:
         answer = result["answer"]
         sources = result["sources"]
         review = result["review"]
+        missing = result["missing_points"]
 
         st.session_state.chat_history.append(("user", question))
         st.session_state.chat_history.append(("assistant", answer))
 
-        # === REVIEW ===
         if use_graph:
             st.markdown("🧠 <b>GraphRAG Activated</b>", unsafe_allow_html=True)
-        else:
-            st.markdown("<i>Using FAISS index for document retrieval</i>", unsafe_allow_html=True)
 
         score = review["confidence_score"]
         st.markdown(f"🔢 <b>Confidence Score:</b> {score:.1f}%", unsafe_allow_html=True)
@@ -160,12 +165,8 @@ if st.button("Send") and question:
                     "type": 'gauge',
                     "progress": {"show": True, "width": 18},
                     "axisLine": {"lineStyle": {"width": 18}},
-                    "axisTick": {"show": False},
-                    "splitLine": {"length": 15, "lineStyle": {"width": 2, "color": "#999"}},
-                    "axisLabel": {"distance": 25, "color": "#999", "fontSize": 12},
-                    "anchor": {"show": True, "showAbove": True, "size": 10, "itemStyle": {"color": "#999"}},
-                    "pointer": {"icon": 'rect', "length": '80%', "width": 6, "itemStyle": {"color": 'auto'}},
-                    "detail": {"valueAnimation": True, "formatter": '{value}%', "color": 'auto', "fontSize": 20},
+                    "pointer": {"length": '80%', "width": 6},
+                    "detail": {"valueAnimation": True, "formatter": '{value}%', "fontSize": 18},
                     "data": [{"value": score}]
                 }]
             }, height=300)
@@ -179,7 +180,7 @@ if st.button("Send") and question:
         if sources:
             st.markdown("<div class='source-box'><b>Sources:</b><ul>" + "".join(f"<li>{src}</li>" for src in sources) + "</ul></div>", unsafe_allow_html=True)
 
-        # === CHUNKS UTILISÉS ===
+        # === CHUNKS ===
         with st.expander("📚 Chunks used in the answer"):
             graph_chunks = [c for c in review.get("context_chunks", []) if c.get("origin") == "graph"]
             st.markdown(f"🧠 <b>Chunks from GraphRAG:</b> {len(graph_chunks)}", unsafe_allow_html=True)
@@ -195,6 +196,13 @@ if st.button("Send") and question:
                         </div>
                     """, unsafe_allow_html=True)
 
+        # === MISSING POINTS ===
+        if missing:
+            with st.expander("🔍 Missing Information for a Perfect Answer"):
+                st.markdown("The following key points are missing from the current context and would improve the answer if retrieved:")
+                for mp in missing:
+                    st.markdown(f"- ❓ {mp}")
+
 # === CHAT HISTORY ===
 for role, message in st.session_state.chat_history:
     if role == "user":
@@ -205,4 +213,5 @@ for role, message in st.session_state.chat_history:
 # === RESET CHAT ===
 if st.button("🧹 Clear chat history"):
     st.session_state.chat_history = []
+    st.session_state["injected_question"] = ""
     st.experimental_rerun()

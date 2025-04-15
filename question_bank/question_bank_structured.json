@@ -1,0 +1,291 @@
+{
+  "Legal and Regulatory Compliance": [
+    {
+      "question": "In which jurisdictions is the digital asset/cryptocurrency operating?"
+    },
+    {
+      "question": "What are the applicable laws and regulations in those jurisdictions?"
+    },
+    {
+      "question": "Has the project obtained all necessary licenses and registrations?"
+    },
+    {
+      "question": "Are there any restrictions or bans on the asset in specific jurisdictions?"
+    },
+    {
+      "question": "How does the project handle cross-border transactions and regulatory differences?"
+    },
+    {
+      "question": "Does the project comply with KYC (Know Your Customer) and AML (Anti-Money Laundering) regulations?"
+    },
+    {
+      "question": "What are the tax implications of investing in this asset in different jurisdictions?"
+    },
+    {
+      "question": "How does the project comply with data privacy laws such as GDPR?"
+    },
+    {
+      "question": "Has the project received any legal notices, subpoenas, or inquiries from regulators?"
+    },
+    {
+      "question": "What is the legal classification of the token (security, utility, etc.)?"
+    },
+    {
+      "question": "Are intellectual property rights (patents, trademarks) clearly defined and registered?"
+    }
+  ],
+  "Team and Background": [
+    {
+      "question": "Who are the founders and core team members, and what is their background?"
+    },
+    {
+      "question": "Are any of the team members anonymous or previously involved in failed projects?"
+    },
+    {
+      "question": "Are team identities and qualifications publicly verifiable?"
+    },
+    {
+      "question": "Are there any advisors or strategic partners involved in the project?"
+    },
+    {
+      "question": "Are there any conflicts of interest within the team or with advisors?"
+    },
+    {
+      "question": "Is the team active in the community and responsive to feedback?"
+    }
+  ],
+  "Technology and Security": [
+    {
+      "question": "What blockchain protocol is used, and why?"
+    },
+    {
+      "question": "Is the codebase open-source and actively maintained?"
+    },
+    {
+      "question": "Has the code undergone third-party security audits?"
+    },
+    {
+      "question": "Are smart contracts used, and have they been audited for vulnerabilities?"
+    },
+    {
+      "question": "What is the consensus mechanism and is it secure?"
+    },
+    {
+      "question": "Are there any known bugs, vulnerabilities, or past breaches?"
+    },
+    {
+      "question": "Does the platform support interoperability with other blockchains?"
+    },
+    {
+      "question": "Are disaster recovery and patching processes clearly defined?"
+    },
+    {
+      "question": "Is the infrastructure protected against DDoS and other attacks?"
+    }
+  ],
+  "Tokenomics and Financial Viability": [
+    {
+      "question": "What is the total and circulating supply of tokens?"
+    },
+    {
+      "question": "How are tokens allocated across stakeholders (team, investors, community)?"
+    },
+    {
+      "question": "Are vesting schedules and lock-up periods in place for major holders?"
+    },
+    {
+      "question": "What is the utility of the token within the ecosystem?"
+    },
+    {
+      "question": "How does the project manage inflation or deflation of the token?"
+    },
+    {
+      "question": "What mechanisms are in place to support price stability (e.g., burns, buybacks)?"
+    },
+    {
+      "question": "How transparent is the project about token treasury and use of funds?"
+    },
+    {
+      "question": "What are the revenue streams and business model?"
+    },
+    {
+      "question": "Are there any risks of centralization in token holdings?"
+    }
+  ],
+  "Market and Competitive Analysis": [
+    {
+      "question": "What problem does the project aim to solve?"
+    },
+    {
+      "question": "Who are the main competitors, and what is the competitive edge?"
+    },
+    {
+      "question": "What is the market size and projected growth?"
+    },
+    {
+      "question": "Are there existing partnerships or institutional backers?"
+    },
+    {
+      "question": "How is user adoption measured and what is the traction?"
+    },
+    {
+      "question": "How does the project plan to enter new markets?"
+    },
+    {
+      "question": "What differentiates the project from forks or copycats?"
+    }
+  ],
+  "Community and Ecosystem": [
+    {
+      "question": "How large and active is the project's community?"
+    },
+    {
+      "question": "What platforms are used for community engagement?"
+    },
+    {
+      "question": "Are community metrics organic or inflated?"
+    },
+    {
+      "question": "Is there a governance model enabling community participation?"
+    },
+    {
+      "question": "Are there any incentives or grants for developers and contributors?"
+    },
+    {
+      "question": "How is feedback handled and integrated?"
+    }
+  ],
+  "Governance and Decentralization": [
+    {
+      "question": "How decentralized is the project in terms of control and governance?"
+    },
+    {
+      "question": "Are there any central points of failure?"
+    },
+    {
+      "question": "How are governance proposals submitted, voted on, and implemented?"
+    },
+    {
+      "question": "What percentage of token holders participate in governance?"
+    },
+    {
+      "question": "Are decisions dominated by whales or small groups?"
+    }
+  ],
+  "Risk Assessment": [
+    {
+      "question": "Are there any signs of market manipulation, pump-and-dump, or wash trading?"
+    },
+    {
+      "question": "What legal, financial, or operational red flags are present?"
+    },
+    {
+      "question": "Is there a history of missed deadlines or overpromising?"
+    },
+    {
+      "question": "How is the project prepared for regulatory changes or adverse rulings?"
+    },
+    {
+      "question": "How dependent is the project on its native token's value?"
+    },
+    {
+      "question": "Are there contingency plans for technical failures or black swan events?"
+    }
+  ],
+  "Financial Audits and Transparency": [
+    {
+      "question": "Has the project undergone external audits?"
+    },
+    {
+      "question": "Are audit results publicly accessible?"
+    },
+    {
+      "question": "How are treasury funds stored and managed?"
+    },
+    {
+      "question": "Are budgets, financials, and runway plans disclosed?"
+    },
+    {
+      "question": "Is there a proof-of-reserve or attestation system in place?"
+    }
+  ],
+  "Exit Strategy and Liquidity": [
+    {
+      "question": "On which exchanges is the token listed?"
+    },
+    {
+      "question": "Are there any lock-ups or restrictions on trading?"
+    },
+    {
+      "question": "How is liquidity maintained during bear markets?"
+    },
+    {
+      "question": "What happens if the project shuts down or is acquired?"
+    },
+    {
+      "question": "What is the exit strategy for investors and users?"
+    }
+  ],
+  "Environmental, Social, and Governance (ESG)": [
+    {
+      "question": "What is the energy footprint of the project?"
+    },
+    {
+      "question": "Are there any carbon offset or sustainability initiatives?"
+    },
+    {
+      "question": "Does the team promote diversity and inclusion?"
+    },
+    {
+      "question": "Is the governance process transparent and ethical?"
+    },
+    {
+      "question": "Does the project contribute to social good or educational efforts?"
+    }
+  ],
+  "External Reviews and Reputation": [
+    {
+      "question": "How is the project rated by analysts or rating platforms?"
+    },
+    {
+      "question": "Has it been featured in major media or conferences?"
+    },
+    {
+      "question": "What is the sentiment in forums like Twitter, Reddit, etc.?"
+    },
+    {
+      "question": "Has the team received any awards or recognition?"
+    },
+    {
+      "question": "How does the project respond to negative press or criticism?"
+    }
+  ],
+  "Use Case and Adoption": [
+    {
+      "question": "What are the real-world applications of the token?"
+    },
+    {
+      "question": "Are there live pilot programs or integrations?"
+    },
+    {
+      "question": "What industries or verticals does the project target?"
+    },
+    {
+      "question": "Are users and businesses adopting the solution?"
+    }
+  ],
+  "Innovation and Technology Differentiation": [
+    {
+      "question": "What unique technology or innovations are introduced?"
+    },
+    {
+      "question": "Are there patents or proprietary features?"
+    },
+    {
+      "question": "How does the team stay ahead of tech trends?"
+    },
+    {
+      "question": "Are there plans for AI, IoT, or Layer-2 integration?"
+    }
+  ]
+}
